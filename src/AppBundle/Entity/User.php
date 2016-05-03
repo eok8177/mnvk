@@ -92,7 +92,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
-    private $isActive = 1;
+    private $isActive = false;
 
     public function getUsername()
     {

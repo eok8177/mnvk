@@ -1,0 +1,60 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+	<div class="container-fluid">
+
+
+		<h1 class="page-header">Users</h1>
+
+{% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th><i class="fa fa-sort" aria-hidden="true"></i> <a href="{{ currentPath }}?column=id{% if column == 'id' and order == 'asc' %}&order=desc{% else %}&order=asc{% endif %}">
+						Id</th></a>
+					<th>Action</th>
+					<th>Login</th>
+					<th><i class="fa fa-sort" aria-hidden="true"></i> <a href="{{ currentPath }}?column=firstName{% if column == 'firstName' and order == 'asc' %}&order=desc{% else %}&order=asc{% endif %}">
+						firstName</th>
+					<th><i class="fa fa-sort" aria-hidden="true"></i> <a href="{{ currentPath }}?column=lastName{% if column == 'lastName' and order == 'asc' %}&order=desc{% else %}&order=asc{% endif %}">
+						lastName</th>
+					<th>Phone</th>
+					<th>skype</th>
+					<th><i class="fa fa-sort" aria-hidden="true"></i> <a href="{{ currentPath }}?column=email{% if column == 'email' and order == 'asc' %}&order=desc{% else %}&order=asc{% endif %}">
+						Email</th>
+					<th>photo</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				{% for key, user in users %}
+					<tr>
+						<td>{{ user.id }}</td>
+						<td>
+							<div class="btn-group btn-group-sm">
+								<a href="{{ path('admin_user_edit', {'id' : user.id}) }}" class="btn"><span class="fa fa-pencil" aria-hidden="true"></span></a>
+								{% if app.user.id != user.id %}
+								<a href="{{ path('admin_user_delete', {'id' : user.id}) }}" class="btn delete"><span class="fa fa-trash" aria-hidden="true"></span></a>
+								{% endif %}
+							</div>
+						</td>
+						<td>{{ user.username }}</td>
+						<td>{{ user.firstName }}</td>
+						<td>{{ user.lastName }}</td>
+						<td>{{ user.phone }}</td>
+						<td>{{ user.skype }}</td>
+						<td>{{ user.email }}</td>
+						<td>
+						{% if user.photo is not empty %}
+							<img src="{{ user.photo | imagine_filter("thumb_100x100") }}">
+						{% endif %}
+						</td>
+					</tr>
+				{% endfor %}
+
+
+			</tbody>
+		</table>
+
+	</div>
+{% endblock %}
