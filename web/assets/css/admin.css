@@ -255,3 +255,7 @@ legend.zh{
 .thumbnail{
 	background-color: #eee;
 }
+
+.tab-content {
+  padding-top: 20px;
+}

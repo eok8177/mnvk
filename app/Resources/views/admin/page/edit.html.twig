@@ -1,0 +1,53 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+
+<h1 class="page-header">{% if current.action == 'edit' %}Edit{% else %}New{% endif %} Page</h1>
+
+<ul class="nav nav-tabs">
+	<li class="active">
+		<a href="#page" data-toggle="tab">Страница</a>
+	</li>
+	<li>
+		<a href="#seo" data-toggle="tab">SEO</a>
+	</li>
+</ul>
+
+{{ form_start(form, {'attr': {'class': 'form-horizontal'} }) }}
+<div class="tab-content">
+	<div class="tab-pane fade in active" id="page">
+	{{ form_row(form.parent) }}
+	{{ form_row(form.title) }}
+	{{ form_row(form.text) }}
+	{{ form_row(form.enabled) }}
+	{% if image is not empty %}
+		<div class="col-sm-2"></div>
+		<div class="col-md-10">
+			<div class="thumbnail">
+				<img src="{{ image | imagine_filter("thumb_100x100") }}">
+				<a href="{{ path('admin_page_delete_image', {'id': page.id}) }}" class="btn delete"><span class="fa fa-trash" aria-hidden="true"></span></a>
+			</div>
+		</div>
+	{% endif %}
+	{{ form_row(form.fimage) }}
+	{{ form_row(form.position) }}
+	</div>
+	<div class="tab-pane fade" id="seo">
+	{{ form_row(form.slug) }}
+	{{ form_row(form.metaT) }}
+	{{ form_row(form.metaD) }}
+	{{ form_row(form.metaK) }}
+
+	</div>
+
+	{{ form_row(form.save) }}
+
+</div>
+{{ form_end(form) }}
+{% endblock %}
+
+{% block stylesheets %}
+	<style>
+		.thumbnail {max-width: 104px;}
+	</style>
+{% endblock %}

@@ -46,7 +46,7 @@
 						<td>{{ user.email }}</td>
 						<td>
 						{% if user.photo is not empty %}
-							<img src="{{ user.photo | imagine_filter("thumb_100x100") }}">
+							<img src="{{ user.photo | imagine_filter("thumb_50x50") }}">
 						{% endif %}
 						</td>
 					</tr>

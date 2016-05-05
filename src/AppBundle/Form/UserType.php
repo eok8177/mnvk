@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class UserType extends AbstractType
 {
@@ -41,7 +42,7 @@ class UserType extends AbstractType
                 'attr' => array("autocomplete" => "off")
                 ])
 
-            ->add('Active')
+            ->add('isActive', CheckboxType::class, array('label' => 'Active'))
 
             ->add('photo', FileType::class, 
                 array('required'  => false),
