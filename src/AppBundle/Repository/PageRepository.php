@@ -13,7 +13,7 @@ class PageRepository extends \Doctrine\ORM\EntityRepository
 		public function getList()
 	{
 		$query = $this->createQueryBuilder('p')
-			->where("p.id != 0");
+			->where("p.id > 1");
 
 		$query->orderBy('p.position', 'ASC');
 
