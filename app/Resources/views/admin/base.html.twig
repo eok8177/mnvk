@@ -59,6 +59,18 @@
 					<a href="{{path('admin_dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a>
 				</li>
 
+				<li class="{{ current.controller == 'category' ? 'active' }}">
+					<a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#dropdown-category" ><i class="fa fa-folder-open-o"></i> Categories</a>
+					<ul id="dropdown-category" class="collapse {{ current.controller == 'category' ? 'in' }}"> <!-- in = opened block -->
+						<li class="{{ current.controller == 'category' and current.action == 'list' ? 'active' }}">
+							<a href="{{path('admin_category_list')}}"><i class="fa fa-list"></i> List Categories</a>
+						</li>
+						<li class="{{ current.controller == 'category' and current.action == 'create' ? 'active' }}">
+							<a href="{{path('admin_category_edit')}}"><i class="fa fa-plus"></i> New Category</a>
+						</li>
+					</ul>
+				</li>
+
 				<li class="{{ current.controller == 'page' ? 'active' }}">
 					<a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#dropdown-pages" ><i class="fa fa-newspaper-o"></i> Static Pages</a>
 					<ul id="dropdown-pages" class="collapse {{ current.controller == 'page' ? 'in' }}"> <!-- in = opened block -->
